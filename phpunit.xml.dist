@@ -9,7 +9,9 @@
          cacheDirectory=".phpunit.cache"
          backupStaticProperties="false"
          failOnRisky="true"
-         failOnWarning="true">
+         failOnWarning="true"
+         displayDetailsOnTestsThatTriggerDeprecations="true"
+         displayDetailsOnPhpunitDeprecations="true">
   <testsuites>
     <testsuite name="BazingaHateoasBundle Test Suite">
       <directory>./Tests</directory>
