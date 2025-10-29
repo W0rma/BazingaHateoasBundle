@@ -13,7 +13,7 @@ namespace Bazinga\Bundle\HateoasBundle\DependencyInjection;
 use Symfony\Component\Config\FileLocator;
 use Symfony\Component\DependencyInjection\Alias;
 use Symfony\Component\DependencyInjection\ContainerBuilder;
-use Symfony\Component\DependencyInjection\Loader\XmlFileLoader;
+use Symfony\Component\DependencyInjection\Loader\PhpFileLoader;
 use Symfony\Component\DependencyInjection\Reference;
 use Symfony\Component\HttpKernel\DependencyInjection\Extension;
 
@@ -22,14 +22,14 @@ class BazingaHateoasExtension extends Extension
     public function load(array $configs, ContainerBuilder $container): void
     {
         $config = $this->processConfiguration(new Configuration(), $configs);
-        $loader = new XmlFileLoader($container, new FileLocator(__DIR__ . '/../Resources/config'));
+        $loader = new PhpFileLoader($container, new FileLocator(__DIR__ . '/../Resources/config'));
 
         foreach (['serializer', 'configuration', 'generator', 'helper', 'twig'] as $file) {
             if ('twig' === $file && false === $config['twig_extension']['enabled']) {
                 continue;
             }
 
-            $loader->load($file . '.xml');
+            $loader->load($file . '.php');
         }
 
         // Based on JMSSerializerBundle
