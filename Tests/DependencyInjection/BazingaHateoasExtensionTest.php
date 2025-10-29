@@ -121,7 +121,6 @@ class BazingaHateoasExtensionTest extends TestCase
 
         $reflClass = new \ReflectionClass($jsonListener);
         $reflProp = $reflClass->getProperty('serializer');
-        $reflProp->setAccessible(true);
 
         $this->assertInstanceOf($class, $reflProp->getValue($jsonListener));
 
@@ -129,7 +128,6 @@ class BazingaHateoasExtensionTest extends TestCase
 
         $reflClass = new \ReflectionClass($xmlListener);
         $reflProp = $reflClass->getProperty('serializer');
-        $reflProp->setAccessible(true);
 
         $this->assertInstanceOf('Hateoas\Serializer\XmlSerializer', $reflProp->getValue($xmlListener));
     }
